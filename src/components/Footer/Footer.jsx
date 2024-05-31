@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Container from "../Container/Container";
+import Container from "../container/Container";
 import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 

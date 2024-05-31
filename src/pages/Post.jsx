@@ -34,7 +34,7 @@ export default function Post() {
 
   return post ? (
     <div className="py-8 p-4 flex justify-center bg-slate-900">
-      <div className=" border rounded-xl border-gray-200/10 p-8 max-w-[57rem]">
+      <div className=" border rounded-xl border-gray-200/10 p-8 max-w-[57rem] bg-slate-700">
         <Container>
           <div className="flex justify-center  mb-4 relative max-h-80">
             <img

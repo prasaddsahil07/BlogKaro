@@ -1,30 +1,22 @@
-import React from "react";
-import appwriteService from "../Appwrite/config";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
-const PostCard = ({ $id, title, featuredImage, username, content }) => {
+import React from 'react'
+import appwriteService from '../appwrite/config'
+import { Link } from 'react-router-dom'
+
+
+function PostCard({ $id, title, featuredImage }) {
   return (
     <Link to={`/post/${$id}`}>
-      <span className="block relative h-48 rounded overflow-hidden">
-        <img
-          src={appwriteService.getFilePreview(featuredImage)}
-          alt={title}
-          className="object-contain object-center w-full h-full block"
-        />
-      </span>
-      <div className="mt-4">
-        <h3 className="text-gray-500 leading-3 font-semibold uppercase text-xs tracking-widest title-font mb-1">
-          {username}
-        </h3>
-        <h2 className="text-black title-font text-lg font-medium line-clamp-2">
-          {title}
-        </h2>
-        <div className="mt-1 text-md mb-2  leading-5 text-gray-600 line-clamp-2">
-          {parse(content)}
+      <div className='w-full bg-slate-900 flex flex-col items-center justify-center rounded-xl p-4 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg '>
+        <div className='w-full flex items-center justify-center mb-4'>
+          <img src={appwriteService.getFilePreview(featuredImage)} alt={title}
+            className='object-contain w-full h-[280px] md:h-[220px] ' />
         </div>
+        <h2
+          className='text-xl font-bold max-w-[280px] overflow-hidden whitespace-nowrap overflow-ellipsis'
+        >{title}</h2>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default PostCard;
+export default PostCard

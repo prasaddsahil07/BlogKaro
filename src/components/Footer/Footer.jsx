@@ -1,146 +1,72 @@
 import React from "react";
-import {
-  FaGithub,
-  FaWhatsapp,
-  FaLinkedin,
-  FaFacebookSquare,
-} from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Logo } from "../index";
+import Container from "../Container/Container";
+import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
-const Footer = () => {
+
+function Footer() {
   return (
-    <footer className="bg-gray-900 absolute w-full">
-      <div className="mx-auto w-full max-w-screen-xl px-3 py-4 sm:p-4  lg:py-6">
-        <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
-            <a href="#" className="flex items-center">
-              <Logo className="w-16 sm:w-20" />
-              <span className="self-center text-2xl sm:text-3xl font-semibold whitespace-nowrap text-white">
-                SHOUTS
-              </span>
-            </a>
+    <footer className="bg-gray-800 text-white py-8 px-4">
+      <Container>
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/privacy" className="hover:underline">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:underline">Terms of Service</Link>
+              </li>
+              <li>
+                <Link to="/cookie" className="hover:underline">Cookie Policy</Link>
+              </li>
+              <li>
+                <Link to="/disclaimer" className="hover:underline">Disclaimer</Link>
+              </li>
+              <li>
+                <Link to="/media" className="hover:underline">Media Policy</Link>
+              </li>
+            </ul>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
-                Websites
-              </h2>
-              <ul className=" text-gray-400 font-medium">
-                <li className="mb-4">
-                  <a
-                    target="_blank"
-                    href="https://shayan.netlify.app"
-                    className="hover:underline"
-                  >
-                    Portfolio
-                  </a>
-                </li>
-                <li>
-                  <a
-                    target="_blank"
-                    href="https://msprogrammers.netlify.app/"
-                    className="hover:underline"
-                  >
-                    Company
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
-                Follow Me
-              </h2>
-              <ul className=" text-gray-400 font-medium">
-                <li className="mb-4">
-                  <a
-                    target="_blank"
-                    href="https://linkedin.com/in/ms-programmers/"
-                    className="hover:underline "
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    target="_blank"
-                    href="https://github.com/SHAYAN-8"
-                    className="hover:underline"
-                  >
-                    Github
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
-                Legal
-              </h2>
-              <ul className=" text-gray-400 font-medium">
-                <li className="mb-4">
-                  <Link to="/privacy-policy" className="hover:underline">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    target="_blank"
-                    href="https://api.whatsapp.com/send?phone=923213991664"
-                    className="hover:underline"
-                  >
-                    Contact Me
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Social Links</h3>
+            <ul className="space-y-2">
+              <li>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline">
+                <FaTwitter className="mr-2" /> Twitter
+              </a>
+              </li>
+              <li>
+              <a href="https://www.instagram.com/prasaddsahil07/" target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline">
+                <FaInstagram className="mr-2" /> Instagram
+              </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/sahil-prasad-46a54924a/" target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline">
+                <FaLinkedin className="mr-2" /> Linkedin
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="text-center md:text-centre">
+            <div className="pt-6">
+            <a href="https://github.com/prasaddsahil07" target="_blank" rel="noopener noreferrer">
+            <button
+              type="button"
+              className="mt-4 inline-flex items-center gap-2 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-white/80"
+            >
+              <FaGithub /> Created By Sahil
+            </button>
+          </a>
+          </div>
+          <h2 className="text-lg font-semibold mt-2 pt-3">© 2024 BlogKaro.</h2>
+          <h2 className="text-lg font-semibold ">All rights reserved.</h2>
           </div>
         </div>
-        <hr className="my-6 sm:mx-auto border-gray-700 lg:my-8" />
-        <div className="sm:flex text-center sm:items-center sm:justify-between">
-          <span className="text-sm sm:text-center text-gray-500">
-            © 2024 SHOUTS™. All Rights Reserved. Developed by{" "}
-            <a
-              target="_blank"
-              href="https://shayan.netlify.app/"
-              className="text-gray-300 hover:underline whitespace-nowrap hover:text-gray-100"
-            >
-              SHAYAN
-            </a>
-          </span>
-          <div className="flex gap-4 sm:gap-2 text-2xl w-full sm:w-auto mt-4 justify-center sm:mt-0">
-            <a
-              title="Facebook"
-              target="_blank"
-              href="https://facebook.com/profile.php?id=100094010756930"
-            >
-              <FaFacebookSquare className="text-gray-400 cursor-pointer hover:text-cyan-300" />
-            </a>
-            <a
-              title="LinkedIn"
-              target="_blank"
-              href="https://linkedin.com/in/ms-programmers"
-            >
-              <FaLinkedin className="text-gray-400 cursor-pointer hover:text-cyan-300" />
-            </a>
-            <a
-              title="Whatsapp"
-              target="_blank"
-              href="https://api.whatsapp.com/send?phone=923213991664"
-            >
-              <FaWhatsapp className="text-gray-400 cursor-pointer hover:text-cyan-300" />
-            </a>
-            <a
-              title="Github"
-              target="_blank"
-              href="https://github.com/SHAYAN-8"
-            >
-              <FaGithub className="text-gray-400 cursor-pointer hover:text-cyan-300" />
-            </a>
-          </div>
-        </div>
-      </div>
+      </Container>
     </footer>
-  );
-};
+  )
+}
 
 export default Footer;

@@ -1,44 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import authService from "./Appwrite/auth";
-import { login, logout } from "./Store/authSlice";
-import { Header, Footer } from "./components/index";
-import { Outlet } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import authService from "./appwrite/auth"
+import { login, logout } from "./store/authSlice"
+import { Footer, Header } from './components'
+import { Outlet } from 'react-router-dom'
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
+function App() {
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    authService
-      ?.getCurrentUser()
+    authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
-          dispatch(login({ userData }));
+          dispatch(login({ userData }))
         } else {
-          dispatch(logout());
+          dispatch(logout())
         }
       })
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => setLoading(false))
+  }, [])
 
   return !loading ? (
-    <>
-      <div>
-        <Toaster />
-      </div>
-      <div className="min-h-screen flex flex-wrap content-between ">
-        <div className="w-full block">
-          <Header />
-          <main className="min-h-96 flex items-center justify-center bg-white">
-            <Outlet />
-          </main>
-          <Footer />
-        </div>
-      </div>
-    </>
-  ) : null;
-};
+    <div className="min-h-[100dvh] flex flex-col justify-between bg-slate-900 text-white">
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  ) : null
+}
 
-export default App;
+export default App

@@ -1,118 +1,127 @@
-import React from "react";
-import authService from "../Appwrite/auth.js";
-import { Link, useNavigate } from "react-router-dom";
-import { login } from "../Store/authSlice.js";
-import { Button, Input, Logo } from "./index.js";
-import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import React, { useState } from 'react'
+import authService from '../appwrite/auth.js'
+import { Link, useNavigate } from 'react-router-dom'
+import { login } from '../store/authSlice.js'
+import { Logo, Container } from './index.js'
+import { useDispatch } from 'react-redux'
+import { useForm } from 'react-hook-form'
 
-const Signup = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+function Signup() {
+    const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const dispatch = useDispatch()
+    const { register, handleSubmit } = useForm()
 
-  const create = async (data) => {
-    try {
-      const userData = await authService.createAccount(data);
-      if (userData) {
-        const userData = await authService.getCurrentUser();
-        if (userData) dispatch(login(userData));
-        navigate("/");
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
-      }
-      toast.success("Successfully signed up", {
-        style: {
-          borderRadius: "30px",
-        },
-      });
-    } catch (error) {
-      toast.error(error.message || register.message, {
-        style: {
-          borderRadius: "10px",
-        },
-      });
+    const create = async (data) => {
+        setError("")
+        try {
+            const userData = await authService.createAccount(data)
+            if (userData) {
+                const userData = await authService.getCurrentUser()
+                if (userData) dispatch(login(userData));
+                navigate("/")
+            }
+        } catch (error) {
+            setError(error.message)
+        }
     }
-  };
 
-  return (
-    <div className="flex items-center justify-center w-full my-10">
-      <div className="mx-auto w-full max-w-lg bg-gray-800 rounded-xl px-6 py-10 sm:p-10 border border-black/10">
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
-          </span>
-        </div>
-        <h2 className="text-center text-white text-2xl font-bold leading-tight">
-          Sign up to create account
-        </h2>
-        <p className="mt-2 text-center text-base text-gray-100">
-          Already have an account?&nbsp;
-          <Link
-            to="/login"
-            className="font-medium text-primary text-cyan-300 transition-all duration-200 hover:underline"
-          >
-            Login
-          </Link>
-        </p>
-        {errors.password && (
-          <p className="text-red-500 text-center py-2">
-            {errors.password.message}
-          </p>
-        )}
-        <form onSubmit={handleSubmit(create)}>
-          <div className="space-y-5 text-gray-100">
-            <Input
-              label="Full Name: "
-              placeholder="Enter your full name"
-              className="bg-gray-700 outline-none border-none focus:bg-gray-600 text-white"
-              {...register("name", {
-                required: true,
-              })}
-            />
-            <Input
-              label="Email: "
-              placeholder="Enter your email"
-              className="bg-gray-700 outline-none border-none focus:bg-gray-600 text-white"
-              type="email"
-              {...register("email", {
-                required: true,
-                validate: {
-                  matchPatern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be a valid address",
-                },
-              })}
-            />
-            <Input
-              label="Password: "
-              type="password"
-              placeholder="Enter your password"
-              className="bg-gray-700 outline-none border-none focus:bg-gray-600 text-white"
-              {...register("password", {
-                required: true,
-                pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
-                  message:
-                    "Password must contain 8+ chars, lowercase, uppercase, number",
-                },
-              })}
-            />
+    return (
 
-            <Button type="submit" className="w-full">
-              Create Account
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
+            < div  >
+                <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 bg-slate-900">
+                    <div className=" border w-[450px] border-[#27272A] rounded-xl px-8 py-8 ">
+                        <div className="mb-2 flex justify-center">
+                            <Logo />
+                        </div>
+                        <h2 className="text-center text-2xl font-bold leading-tight text-[#FAFAFA]">
+                            Sign up to create account
+                        </h2>
+                        <p className="mt-2 text-center text-sm text-[#FAFAFA] ">
+                            Already have an account?&nbsp;
+                            <Link
+                                to="/login"
+                                className="font-medium text-[#DCDF00] text-primary transition-all duration-200 hover:underline"
+                            >
+                                Log In
+                            </Link>
+                        </p>
+                        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+                        <form onSubmit={handleSubmit(create)} className="mt-8">
+                            <div className="space-y-5">
+                                <div>
+                                    <label htmlFor="" className="text-base font-medium text-[#FAFAFA]">
+                                        Full Name
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            className="flex h-10 w-full rounded-md border border-[#27272A] bg-transparent px-3 py-2 text-sm placeholder:text-gray-400  disabled:cursor-not-allowed disabled:opacity-50"
 
-export default Signup;
+                                            placeholder="Full name"
+                                            {...register("name", {
+                                                required: true,
+                                            })}
+                                        >
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label htmlFor="" className="text-base font-medium text-[#FAFAFA]">
+                                        Email
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            className="flex h-10 w-full rounded-md border border-[#27272A] bg-transparent px-3 py-2 text-sm placeholder:text-gray-400  disabled:cursor-not-allowed disabled:opacity-50"
+                                            type="email"
+                                            placeholder="Email"
+                                            {...register("email", {
+                                                required: true,
+                                                validate: {
+                                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                                        "Email address must be a valid address",
+                                                }
+                                            })}
+                                        >
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center justify-between">
+                                        <label htmlFor="" className="text-base font-medium text-[#FAFAFA]">
+                                            {' '}
+                                            Password{' '}
+                                        </label>
+                                    </div>
+                                    <div className="mt-2">
+                                        <input
+                                            className="flex h-10 w-full rounded-md border border-[#27272A] bg-transparent px-3 py-2 text-sm placeholder:text-gray-400  disabled:cursor-not-allowed disabled:opacity-50"
+                                            type="password"
+                                            placeholder="Password"
+                                            {...register("password", {
+                                                required: true,
+                                            })}
+                                        >
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button
+                                        type="submit"
+                                        className="inline-flex w-full items-center justify-center rounded-md bg-[#FAFAFA] px-3.5 py-2.5 font-semibold leading-7 text-black hover:bg-[#FAFAFA]/80"
+                                    >
+                                        Create Account
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div >
+    )
+}
+
+export default Signup
+

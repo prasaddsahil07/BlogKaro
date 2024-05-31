@@ -1,42 +1,22 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import authService from "../../Appwrite/auth";
-import { logout } from "../../Store/authSlice";
-import { useModal } from "../index";
-import { CgDanger } from "react-icons/cg";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import authService from '../../appwrite/auth'
+import { logout } from '../../store/authSlice'
 
-const LogoutBtn = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [showModal, ConfirmModal, modalResult] = useModal(
-    <CgDanger className="m-auto text-5xl text-red-500" />,
-    "Are you sure you want to logout?"
-  );
+function LogoutBtn() {
+  const dispatch = useDispatch()
 
   const logoutHandler = () => {
-    // let confirmation = confirm("Are you sure you want to logout?");
-    showModal();
-  };
-  if (modalResult) {
     authService.logout().then(() => {
-      navigate("/");
-      dispatch(logout());
-      location.reload();
-    });
+      dispatch(logout())
+    })
   }
   return (
-    <>
-      <button
-        disabled={modalResult}
-        className="relative rounded-md  py-2 px-4 duration-200 hover:bg-gray-700 text-gray-300 hover:text-white"
-        onClick={logoutHandler}
-      >
-        Logout
-      </button>
-      <ConfirmModal />
-    </>
-  );
-};
+    <button
+      className="rounded-md  bg-[#DCDF00] hover:bg-[#DCDF00]/80 px-3 py-2 text-md font-semibold text-black"
+      onClick={logoutHandler}
+    >Logout</button>
+  )
+}
 
-export default LogoutBtn;
+export default LogoutBtn

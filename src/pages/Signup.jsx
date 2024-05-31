@@ -1,12 +1,12 @@
-import React from "react";
-import { Signup as SignupComponent } from "../components/index";
+import React from 'react'
+import { Signup as SignupComponent } from '../components'
 
-const SignUp = () => {
+function Signup() {
   return (
-    <div className="w-full px-2 sm:px-4">
+    <div>
       <SignupComponent />
     </div>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default Signup

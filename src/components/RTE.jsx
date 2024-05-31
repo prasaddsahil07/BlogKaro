@@ -1,19 +1,21 @@
-import React from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import { Controller } from "react-hook-form";
+import React from 'react'
+import { Editor } from '@tinymce/tinymce-react';
+import { Controller } from 'react-hook-form';
+import conf from '../conf/conf'
 
-const RTE = ({ name, control, label, defaultValue = "" }) => {
+
+export default function RTE({ name, control, label, defaultValue = "" }) {
   return (
-    <div className="w-full">
-      {label && <label className="inline-block mb-1 pl-1">{label}</label>}
-
+    <div className='w-full '>
+      {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
       <Controller
         name={name || "content"}
+        content_css={(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "")}
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
-            apiKey="6n66p4r579yumd598cbvqkq3nll1g2k3icaf3mgzf55xxpnv"
             initialValue={defaultValue}
+            apiKey={conf.tinyMCEApiKey}
             init={{
               initialValue: defaultValue,
               height: 500,
@@ -42,14 +44,15 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
               ],
               toolbar:
                 "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif,Comic Sans,Georgia,Times New Roman,Impact; font-size:14px }",
+              content_style: window.matchMedia("(prefers-color-scheme: dark)").matches ? "body { font-family: Helvetica, Arial, sans-serif; font-size: 14px; background-color: black; }" : "body { font-family: Helvetica, Arial, sans-serif; font-size: 14px; }",
+              skin: window.matchMedia("(prefers-color-scheme: dark)").matches ? "oxide-dark" : "",
+              content_css: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "",
             }}
             onEditorChange={onChange}
           />
         )}
       />
+
     </div>
-  );
-};
-export default RTE;
+  )
+}

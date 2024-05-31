@@ -2,66 +2,45 @@ import React from "react";
 import { Container } from "../components/index";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import home from '../../public/images/home.png'
 
-const Home = () => {
-  // const [name, setName] = useState("User");
-  // useEffect(() => {
-  //   authService.getCurrentUser().then((result) => setName(result.name));
-  // }, []);
+function Home() {
+  const authStatus = useSelector((state) => state.auth.status);
 
-  const name = useSelector((state) => state.auth.userData?.name);
-  const status = useSelector((state) => state.auth.status);
   return (
-    <div className="w-full">
-      <div className="area pb-12">
-        <div className="circles">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+    <div>
+      <div className="relative w-full bg-slate-900">
       <Container>
-        <div className="container mx-auto flex flex-col  items-center px-4 pb-10 pt-12 sm:py-16 text-center md:py-24 md:px-10 lg:px-32 xl:max-w-3xl">
-          <h1 className="text-4xl text-gray-700 font-bold leading-none sm:text-5xl ">
-            <span className="text-cyan-400 capitalize ">
-              {" "}
-              Hi {status ? name : "Stranger"}!
-            </span>{" "}
-            <br />
-            Welcome to BlogKaro
-          </h1>
-          <p className="px-8 mt-8 mb-12 font-semibold text-lg">
-            BlogKaro, A sleek and all-in-one blog app, take your blogging to the
-            next level!
-          </p>
-          <div className="flex flex-wrap justify-center">
-            <Link
-              to={status ? "/all-posts" : "/signup"}
-              className="px-8 py-3 m-2 border-2 hover:border-gray-500 duration-200 text-lg font-semibold rounded  "
-            >
-              {status ? "Read Blog" : "SignUp"}
-            </Link>
-            <Link
-              to={status ? "/add-post" : "/login"}
-              className="px-8 py-3 m-2 text-lg font-semibold text-white duration-200 hover:text-cyan-300 rounded bg-gray-800 hover:bg-black"
-            >
-              {status ? "Post Blog" : "Login"}
+        <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
+          <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
+            <h1 className="mt-8 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-6xl">
+              <span className="text-[#DCDF00] text-4xl md:text-5xl lg:text-7xl">BlogKaro</span>. your go-to destination for all things blogging.
+            </h1>
+            <p className="mt-8 text-lg text-white">
+              Embark on a journey of discovery with our collection of insightful articles, captivating stories, and thought-provoking discussions. Whether you seek to expand your knowledge, find inspiration, or simply enjoy a good read, our platform has something for everyone.
+            </p>
+
+            <Link to={authStatus ? "/all-posts" : "/login"}>
+              <button
+                type="button"
+                className="rounded-md mt-8  bg-[#DCDF00] hover:bg-[#DCDF00]/80  px-3 py-2 text-md font-semibold text-black "
+              >
+                {authStatus ? "View All Posts" : "Get Started"}
+              </button>
             </Link>
           </div>
-          {!status && (
-            <p className="text-gray-500">Login to Read, Share and Post Blogs</p>
-          )}
+          <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6">
+            <img
+              className="aspect-[3/2] bg-slate-900 object-cover lg:aspect-[4/3] lg:h-[700px] xl:aspect-[16/9]"
+              src={home}
+              alt={home}
+            />
+          </div>
         </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
-};
+}
 
 export default Home;

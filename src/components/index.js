@@ -1,5 +1,4 @@
 import Header from "./Header/Header";
-import Select from "./Select";
 import Footer from "./Footer/Footer";
 import Container from "./container/Container";
 import Logo from "./Logo";
@@ -19,7 +18,6 @@ export {
     Logo,
     LogoutBtn,
     Input,
-    Select,
     RTE,
     Signup,
     Login,

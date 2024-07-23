@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Input, RTE, Select } from "..";
+import { Input, RTE } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -117,12 +117,6 @@ export default function PostForm({ post }) {
                     </div>
                 )}
 
-                <Select
-                    options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4 bg-slate-900"
-                    {...register("status", { required: true })}
-                />
                 <button
                     type="submit"
                     className="w-full rounded-md bg-white hover:bg-white/80 px-3 py-2 text-md font-semibold text-black"

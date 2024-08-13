@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useSelector } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, PostCard } from '../components';
 import appwriteService from '../appwrite/config';
+import { useSelector } from "react-redux";
 import '../index.css'; // Ensure to import the CSS file where spinner styles are defined
 
 function MyPosts() {

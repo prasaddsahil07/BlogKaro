@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSelector } from 'react';
 import { Container, PostCard } from '../components';
 import appwriteService from '../appwrite/config';
-import authService from '../appwrite/auth';
 import '../index.css'; // Ensure to import the CSS file where spinner styles are defined
 
 function MyPosts() {
     const [posts, setMyPosts] = useState([]);
     const [loading, setLoading] = useState(true); // Add loading state
-    const userId = authService.getCurrentUser(); 
+    const userData = useSelector((state) => state.auth.userData);
+    const userId = userdata.$id;
 
     useEffect(() => {
         appwriteService.getMyPosts(userId).then((posts) => {

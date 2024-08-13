@@ -6,20 +6,35 @@ import '../index.css'; // Ensure to import the CSS file where spinner styles are
 
 function MyPosts() {
     const [posts, setMyPosts] = useState([]);
-    const [loading, setLoading] = useState(true); // Add loading state
-    // const userId="669f3c55e8223fcaf22f";
-    const userId = authService.getCurrentUser();
-    
+    const [loading, setLoading] = useState(true);
+    const [userId, setUserId] = useState(null);
+
     useEffect(() => {
-        appwriteService.getMyPosts(userId).then((posts) => {
-            if (posts) {
-                setMyPosts(posts.documents);
+        authService.getCurrentUser().then((id) => {
+            if (id) {
+                setUserId(id);
+            } else {
+                setLoading(false); // Stop loading if userId can't be retrieved
             }
-            setLoading(false); // Set loading to false after fetching
         }).catch(() => {
-            setLoading(false); // Set loading to false in case of an error
+            setLoading(false); // Stop loading in case of error
         });
     }, []);
+
+    useEffect(() => {
+        if (userId) {
+            appwriteService.getMyPosts(userId).then((posts) => {
+                if (posts && posts.documents.length > 0) {
+                    setMyPosts(posts.documents);
+                } else {
+                    setMyPosts([]); // No posts found
+                }
+                setLoading(false);
+            }).catch(() => {
+                setLoading(false);
+            });
+        }
+    }, [userId]);
 
     return (
         <div className="w-full py-8 bg-slate-900">

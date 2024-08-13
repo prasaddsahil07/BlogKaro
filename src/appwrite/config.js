@@ -100,7 +100,7 @@ export class Service {
     }
   }
 
-  async getPosts(queries = [Query.equal("status", "active")]) {
+  async getPosts(queries = [Query.equal("status", ["active"])]) {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
@@ -116,8 +116,8 @@ export class Service {
   async getMyPosts(userId) {
     try {
         const queries = [
-            Query.equal("status", "active"),
-            Query.equal("userId", "userId") // "userId" is the field storing the user's ID
+            Query.equal("status", ["active"]),
+            Query.select("userId", ["userId"]) // "userId" is the field storing the user's ID
         ];
         return await this.databases.listDocuments(
             conf.appwriteDatabaseId,

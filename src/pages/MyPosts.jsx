@@ -30,7 +30,7 @@ function MyPosts() {
             </div>
             <div className="h-full">
                 <Container>
-                    {loading ? ( // Check loading state
+                    {!loading ? ( // Check loading state
                         <div className="flex justify-center items-center h-full">
                             <div className="spinner"></div>
                         </div>

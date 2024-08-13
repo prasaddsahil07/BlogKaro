@@ -51,4 +51,4 @@ function MyPosts() {
     );
 }
 
-export default AllPosts;
+export default MyPosts;

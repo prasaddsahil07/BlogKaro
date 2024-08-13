@@ -12,7 +12,7 @@ function MyPosts() {
     useEffect(() => {
         appwriteService.getMyPosts(userId).then((posts) => {
             if (posts) {
-                setPosts(posts.documents);
+                setMyPosts(posts.documents);
             }
             setLoading(false); // Set loading to false after fetching
         }).catch(() => {

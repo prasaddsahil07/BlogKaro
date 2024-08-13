@@ -113,8 +113,25 @@ export class Service {
     }
   }
 
-  // file upload service
+  async getMyPosts(userId) {
+    try {
+        const queries = [
+            Query.equal("status", "active"),
+            Query.equal("userId", userId) // "userId" is the field storing the user's ID
+        ];
+        return await this.databases.listDocuments(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId,
+            queries
+        );
+    } catch (error) {
+        console.log("Appwrite service :: getMyPosts :: error", error);
+        return false;
+    }
+}
 
+
+  // file upload service
   async uploadFile(file) {
     try {
       return await this.bucket.createFile(

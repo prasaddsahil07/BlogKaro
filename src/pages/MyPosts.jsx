@@ -10,19 +10,16 @@ function MyPosts() {
     const userId = "6659f09b187b2cc98542";
 
     useEffect(() => {
-        if (userId) {
-            appwriteService.getMyPosts(userId).then((posts) => {
-                if (posts && posts.documents.length > 0) {
-                    setMyPosts(posts.documents);
-                } else {
-                    setMyPosts([]); // No posts found
-                }
-                setLoading(false);
-            }).catch(() => {
-                setLoading(false);
-            });
-        }
-    }, [userId]);
+        appwriteService.getMyPosts(userId).then((posts) => {
+            if (posts) {
+                setPosts(posts.documents);
+            }
+            setLoading(false); // Set loading to false after fetching
+        }).catch(() => {
+            setLoading(false); // Set loading to false in case of an error
+        });
+    }, []);
+
 
     return (
         <div className="w-full py-8 bg-slate-900">

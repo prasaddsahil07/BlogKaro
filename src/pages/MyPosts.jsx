@@ -59,7 +59,7 @@ function MyPosts() {
                                 ))}
                             </div>
                         ) : (
-                            <div className="text-center">Nothing to Show</div>
+                            <h3 className="text-center">Nothing to Show</h3>
                         )
                     )}
                 </Container>

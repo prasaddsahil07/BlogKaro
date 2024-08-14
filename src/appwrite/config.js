@@ -113,9 +113,9 @@ export class Service {
     }
   }
 
-  async getMyPosts(uId) {
+  async getMyPosts(userId) {
     try {
-        const queries = [Query.equal("userId", ["uId"]); // "userId" is the field storing the user's ID];
+        const queries = [Query.equal("userId", ["userId"]); // "userId" is the field storing the user's ID];
         return await this.databases.listDocuments(
             conf.appwriteDatabaseId,
             conf.appwriteCollectionId,

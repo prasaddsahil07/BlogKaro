@@ -7,7 +7,7 @@ import '../index.css'; // Ensure to import the CSS file where spinner styles are
 function MyPosts() {
     const [posts, setMyPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const userId = "6659f09b187b2cc98542";
+    const userId = "66bb7cf51522713c699e";
 
     useEffect(() => {
         appwriteService.getMyPosts(userId).then((posts) => {

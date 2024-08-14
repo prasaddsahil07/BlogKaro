@@ -44,9 +44,7 @@ function MyPosts() {
                                 ))}
                             </div>
                         ) : (
-                            <div>
-                                <h2 className="text-center">Nothing to Show Here</h2>
-                            </div>
+                           <div className="text-center">Nothing to Show Here</div>
                         )
                     )}
                 </Container>

@@ -100,11 +100,7 @@ export class Service {
     }
   }
 
-<<<<<<< HEAD
   async getPosts(queries = [Query.notEqual("status", ["inactive"])]) {
-=======
-  async getPosts(queries = [Query.equal("status", ["active"])]) {
->>>>>>> b31753ae52c654c1af3fdd073c5ebb7d58af1c8a
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
@@ -119,11 +115,7 @@ export class Service {
 
   async getMyPosts(userId) {
     try {
-<<<<<<< HEAD
         const queries = [Query.equal("userId", [userId])]; // "userId" is the field storing the user's ID];
-=======
-        const queries = [Query.equal("userId", ["userId"]); // "userId" is the field storing the user's ID];
->>>>>>> b31753ae52c654c1af3fdd073c5ebb7d58af1c8a
         return await this.databases.listDocuments(
             conf.appwriteDatabaseId,
             conf.appwriteCollectionId,
@@ -133,16 +125,10 @@ export class Service {
         console.log("Appwrite service :: getMyPosts :: error", error);
         return false;
     }
-<<<<<<< HEAD
   }
 
   // file upload service
-=======
-}
->>>>>>> b31753ae52c654c1af3fdd073c5ebb7d58af1c8a
 
-
-  // file upload service
   async uploadFile(file) {
     try {
       return await this.bucket.createFile(

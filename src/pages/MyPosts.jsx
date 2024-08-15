@@ -7,7 +7,6 @@ import '../index.css'; // Ensure to import the CSS file where spinner styles are
 function MyPosts() {
     const [posts, setMyPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-<<<<<<< HEAD
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
@@ -34,21 +33,6 @@ function MyPosts() {
             });
         }
     }, [userId]);
-=======
-    const userId = authService.getCurrentUser().userId;
-
-    useEffect(() => {
-        appwriteService.getMyPosts(userId).then((posts) => {
-            if (posts) {
-                setMyPosts(posts.documents);
-            }
-            setLoading(false); // Set loading to false after fetching
-        }).catch(() => {
-            setLoading(false); // Set loading to false in case of an error
-        });
-    }, []);
-
->>>>>>> b31753ae52c654c1af3fdd073c5ebb7d58af1c8a
 
     return (
         <div className="w-full py-8 bg-slate-900">
@@ -59,11 +43,7 @@ function MyPosts() {
             </div>
             <div className="h-full">
                 <Container>
-<<<<<<< HEAD
                     {loading ? (
-=======
-                    {loading ? ( // Check loading state
->>>>>>> b31753ae52c654c1af3fdd073c5ebb7d58af1c8a
                         <div className="flex justify-center items-center h-full">
                             <div className="spinner"></div>
                         </div>
@@ -77,11 +57,7 @@ function MyPosts() {
                                 ))}
                             </div>
                         ) : (
-<<<<<<< HEAD
                             <div className="text-center">Nothing to Show Here</div>
-=======
-                           <div className="text-center">Nothing to Show Here</div>
->>>>>>> b31753ae52c654c1af3fdd073c5ebb7d58af1c8a
                         )
                     )}
                 </Container>

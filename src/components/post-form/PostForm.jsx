@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Input, RTE } from "..";
+import { Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -24,7 +24,6 @@ export default function PostForm({ post }) {
         try {
             if (post) {
                 const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-
                 if (file) {
                     await appwriteService.deleteFile(post.featuredImage);
                 }
@@ -116,6 +115,12 @@ export default function PostForm({ post }) {
                         />
                     </div>
                 )}
+                <Select
+                    options={["active", "inactive"]}
+                    label="Status"
+                    className="mb-4 bg-slate-600"
+                    {...register("status", { required: true })}
+                />
 
                 <button
                     type="submit"

@@ -38,7 +38,7 @@ export default function Post() {
         <Container>
           <div className="flex justify-center  mb-4 relative max-h-80">
             <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
+              src={appwriteService.getFileView(post.featuredImage)}
               alt={post.title}
               className="rounded-xl w-full object-contain"
             />
